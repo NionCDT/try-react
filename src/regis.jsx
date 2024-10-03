@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {createUserWithEmailAndPassword, sendEmailVerification} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import {auth, db} from './index.js';
 import {setDoc, doc} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
-import {toast} from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 function Register (){
     const [email, setEmail] = useState("");
@@ -22,11 +23,11 @@ function Register (){
           }
 
           if (password == confirmP){
-            toast.success("Password Correct. 😃", {
+            toast.success("Password Correct. ", {
               position: "top-left"
             });
           } else {
-            toast.error("Incorrect Password. 😃", {
+            toast.error("Incorrect Password. ", {
               position: "top-left"
             });
           }
@@ -46,6 +47,7 @@ function Register (){
       };
       
     return(
+      <>
             <form onSubmit={handleRegister}>
                 <h3>Try Register</h3>
                 <label htmlFor="email">Email: </label>
@@ -56,6 +58,8 @@ function Register (){
                 <input type="password" id = "password" placeholder='Password' onChange={(e) => setConfirmP(e.target.value)} /> <br/>
                 <input type="submit" value={"Submit"} />
             </form>
+            <ToastContainer />
+      </>
     );
 }
 
