@@ -32,6 +32,11 @@ function Register (){
             });
           }
 
+          sendEmailVerification(auth.currentUser)
+          .then(()=>{
+            console.log("Email Verification Sent!");
+        });
+
           console.log("User Registered Successfully!!");
           toast.success("Account Successfully Registered. 😃", {
             position: "top-left"
