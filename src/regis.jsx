@@ -26,6 +26,11 @@ function Register (){
             console.log("Incorrect Password");
           }
 
+          sendEmailVerification(auth.currentUser)
+          .then(()=>{
+            console.log("Email Verification Sent!");
+        });
+
           console.log("User Registered Successfully!!");
         } catch (error) {
           console.log(error.message);
