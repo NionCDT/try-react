@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import {createUserWithEmailAndPassword, sendEmailVerification} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import {auth, db} from './index.js';
 import {setDoc, doc} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+import {toast} from 'react-toastify';
 
 function Register (){
     const [email, setEmail] = useState("");
@@ -21,15 +22,27 @@ function Register (){
           }
 
           if (password == confirmP){
-            console.log("Correct Password");
+            toast.success("Password Correct. 😃", {
+              position: "top-left"
+            });
           } else {
-            console.log("Incorrect Password");
+            toast.error("Incorrect Password. 😃", {
+              position: "top-left"
+            });
           }
 
           console.log("User Registered Successfully!!");
+          toast.success("Account Successfully Registered. 😃", {
+            position: "top-left"
+          });
         } catch (error) {
           console.log(error.message);
         }
+
+        sendEmailVerification(auth.currentUser)
+        .then(()=>{
+            console.log("Email Verification link sent");
+        });
       };
       
     return(
