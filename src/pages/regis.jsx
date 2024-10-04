@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {createUserWithEmailAndPassword, sendEmailVerification} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-import {auth, db} from './index.js';
+import {auth, db} from '../index.js';
 import {setDoc, doc} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 import {ToastContainer, toast} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -53,7 +53,7 @@ function Register (){
       
     return(
       <>
-            <form onSubmit={handleRegister}>
+            <form>
                 <h3>Try Register</h3>
                 <label htmlFor="email">Email: </label>
                 <input type="email" id = "email" placeholder='Email' onChange={(e) => setEmail(e.target.value)} /> <br/>
@@ -61,7 +61,7 @@ function Register (){
                 <input type="password" id = "password" placeholder='Password' onChange={(e) => setPassword(e.target.value)} /> <br/>
                 <label htmlFor="password">Password: </label>
                 <input type="password" id = "password" placeholder='Password' onChange={(e) => setConfirmP(e.target.value)} /> <br/>
-                <input type="submit" value={"Submit"} />
+                <input type="button" value="Submit" onClick={handleRegister} />
             </form>
             <ToastContainer />
       </>
